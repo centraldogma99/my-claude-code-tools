@@ -57,6 +57,17 @@ print(f'MESSAGE={chr(34)}{msg}{chr(34)}')
   -timeout 5 \
   >/dev/null 2>&1 &
 
-afplay "/System/Library/PrivateFrameworks/ToneLibrary.framework/Versions/A/Resources/AlertTones/Classic/Calypso.m4r" &
+# SCV sound selection based on hook event
+SCV_DIR="$(cd "$(dirname "$0")/.." && pwd)/assets/sounds/sc_scv"
+HOOK_EVENT=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('hook_event_name',''))" 2>/dev/null)
+
+if [ "$HOOK_EVENT" = "PermissionRequest" ]; then
+  SCV_SOUNDS=("SomethingsInTheWay.mp3" "CantBuildThere.mp3")
+else
+  SCV_SOUNDS=("JobsFinished.mp3" "GoodToGoSir.mp3")
+fi
+
+SCV_PICK="${SCV_SOUNDS[$((RANDOM % ${#SCV_SOUNDS[@]}))]}"
+afplay "$SCV_DIR/$SCV_PICK" &
 
 exit 0
