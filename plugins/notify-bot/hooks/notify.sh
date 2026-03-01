@@ -1,7 +1,6 @@
 #!/bin/bash
 # Claude Code notification hook
 # Sends macOS notification + plays SCV sound when Claude needs attention
-# Ported from opencode-plugins/notify.ts
 #
 # Events handled:
 #   Notification (permission_prompt) → 권한 필요 + permission sound
@@ -79,18 +78,12 @@ if is_tab_active; then
 	exit 0
 fi
 
-# ── Send macOS notification via terminal-notifier ──
-# Skip notification for idle_prompt (sound only)
-NOTIFIER="/opt/homebrew/opt/terminal-notifier/bin/terminal-notifier"
-if [ -x "$NOTIFIER" ] && [ "${NOTIFICATION_TYPE:-}" != "idle_prompt" ]; then
-	"$NOTIFIER" \
-		-title "Claude Code - $PROJECT_NAME" \
-		-message "$MESSAGE" \
-		-timeout 5 &>/dev/null &
-fi
+# ── Send macOS notification via osascript ──
+osascript -e "display notification \"$MESSAGE\" with title \"Claude Code\" subtitle \"$PROJECT_NAME\"" 2>/dev/null &
 
 # ── Play SCV sound effect ──
-SOUND_DIR="$HOME/.claude/hooks/assets/sounds/sc_scv"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SOUND_DIR="$SCRIPT_DIR/../assets/sounds/sc_scv"
 
 if [ -d "$SOUND_DIR" ]; then
 	if [ "$CATEGORY" = "permission" ]; then
