@@ -122,26 +122,24 @@ export const NotifyPlugin: Plugin = async (ctx) => {
 
 	return {
 		event: async ({ event }) => {
-			// Skip notification if the iTerm2 tab is currently active
-			if (await isTabActive()) {
-				return
-			}
-
 			const projectName = path.basename(directory) || "unknown"
 
 			switch (event.type) {
 				case "permission.asked":
 				case "permission.updated": {
+					if (await isTabActive()) return
 					sendNotification(`OpenCode - ${projectName}`, "권한 필요")
 					playSound("permission")
 					break
 				}
 				case "question.asked": {
+					if (await isTabActive()) return
 					sendNotification(`OpenCode - ${projectName}`, "질문 있음")
 					playSound("permission")
 					break
 				}
 				case "session.idle": {
+					if (await isTabActive()) return
 					sendNotification(`OpenCode - ${projectName}`, "완료")
 					playSound("completion")
 					break
