@@ -6,6 +6,9 @@
 
 trap 'exit 0' ERR
 
+# Skip if spawned by mistake-tracker
+[ "${_MISTAKE_TRACKER_ACTIVE:-}" = "1" ] && exit 0
+
 # Environment guards
 [ -n "$TMUX" ] && exit 0
 [ -n "$SSH_TTY" ] && exit 0
