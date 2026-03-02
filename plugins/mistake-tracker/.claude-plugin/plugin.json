@@ -1,7 +1,7 @@
 {
   "name": "mistake-tracker",
   "description": "사용자 메시지를 자동 분류하여 실수 지적 패턴을 추적하는 hook 기반 플러그인",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "최준영"
   }

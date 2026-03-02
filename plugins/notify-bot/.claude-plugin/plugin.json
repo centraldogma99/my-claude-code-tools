@@ -1,7 +1,7 @@
 {
   "name": "notify-bot",
   "description": "Claude Code 알림 및, 상태에 따른 터미널 탭 색상 변경",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "최준영"
   }
