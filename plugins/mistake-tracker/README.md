@@ -62,6 +62,37 @@ cat ~/.claude/logs/mistake-tracker/*.jsonl | jq -s 'sort_by(-.confidence) | .[:1
 cat ~/.claude/logs/mistake-tracker/*.jsonl | jq 'select(.project | contains("my-project"))'
 ```
 
+## 리포트 생성
+
+`/mistake-report` slash command로 실수 추적 리포트를 생성할 수 있다.
+
+### 사용법
+
+Claude Code 세션에서:
+```
+/mistake-report
+```
+
+### 기능
+- 마지막 리포트 이후 ~ 현재까지의 실수 데이터를 분석
+- 세션 대화에서 실수 주변 컨텍스트를 AI가 동적으로 추출
+- 반복 패턴 분석 및 Claude Code 가이드 기반 개선 제안
+- JSON + Markdown 두 가지 형식으로 리포트 생성
+
+### 리포트 저장 위치
+
+```
+~/.claude/logs/mistake-tracker/reports/
+├── report_2026-02-23_2026-03-02.json
+└── report_2026-02-23_2026-03-02.md
+```
+
+### 리포트 내용
+- **요약 통계**: 총 실수 건수, 세션 수, 평균 확신도, 프로젝트별/카테고리별 분포
+- **세션별 상세**: 각 실수의 대화 컨텍스트 (원인 → 지적 → 수정)
+- **패턴 분석**: 반복되는 실수 유형 식별
+- **개선 제안**: Claude Code 활용법 기반 구체적 개선 방안
+
 ## 설정
 
 `~/.claude/logs/mistake-tracker/config.json`을 생성하여 커스터마이징 가능 (없으면 기본값 사용):
