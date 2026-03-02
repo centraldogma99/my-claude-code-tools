@@ -8,6 +8,12 @@
 
 trap 'exit 0' ERR
 
+# ── Recursion guard ──
+# claude -p triggers UserPromptSubmit again, causing infinite recursion.
+# Use env var to detect and break the cycle.
+[ "${_MISTAKE_TRACKER_ACTIVE:-}" = "1" ] && exit 0
+export _MISTAKE_TRACKER_ACTIVE=1
+
 # ── Read JSON from stdin ──
 INPUT=$(cat)
 
@@ -72,13 +78,16 @@ mkdir -p "$LOG_DIR"
     JSON_RESULT=$(printf '%s' "$RESULT" | grep -oE '\{[^{}]*\}' | head -1) || exit 0
   [ -z "$JSON_RESULT" ] && exit 0
 
+  IS_MISTAKE=$(printf '%s' "$JSON_RESULT" | jq -r '.is_mistake // false' 2>/dev/null) || exit 0
   CONFIDENCE=$(printf '%s' "$JSON_RESULT" | jq -r '.confidence // 0' 2>/dev/null) || exit 0
 
-  # Apply threshold: confidence >= threshold → is_mistake: true
-  IS_MISTAKE=$(awk -v c="$CONFIDENCE" -v t="$CONFIDENCE_THRESHOLD" 'BEGIN { print (c+0 >= t+0) ? "true" : "false" }')
+  # Only log confirmed mistakes above confidence threshold
+  [ "$IS_MISTAKE" != "true" ] && exit 0
+  LOW_CONF=$(awk -v c="$CONFIDENCE" -v t="$CONFIDENCE_THRESHOLD" 'BEGIN { print (c+0 < t+0) ? "true" : "false" }')
+  [ "$LOW_CONF" = "true" ] && exit 0
 
   # Build log record
-  RECORD=$(jq -n \
+  RECORD=$(jq -cn \
     --arg ts "$TIMESTAMP" \
     --arg sid "$SESSION_ID" \
     --arg proj "$CWD" \
