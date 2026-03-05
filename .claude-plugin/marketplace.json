@@ -37,6 +37,16 @@
         "name": "최준영"
       },
       "tags": ["hooks", "tracking", "mistake", "haiku"]
+    },
+    {
+      "name": "worktree-sync",
+      "source": "./plugins/worktree-sync",
+      "description": "Git worktree 진입 시 .env.local, node_modules 등을 원본에서 자동 symlink/복사",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["hooks", "worktree", "sync", "symlink"]
     }
   ]
 }
