@@ -47,6 +47,16 @@
         "name": "최준영"
       },
       "tags": ["hooks", "worktree", "sync", "symlink"]
+    },
+    {
+      "name": "figma-verify",
+      "source": "./plugins/figma-verify",
+      "description": "Figma 디자인 기반 프론트엔드 마크업 작업 후, agent-browser로 결과물을 자동 검증하고 수정하는 워크플로우 플러그인",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["commands", "figma", "verify", "browser", "markup"]
     }
   ]
 }
