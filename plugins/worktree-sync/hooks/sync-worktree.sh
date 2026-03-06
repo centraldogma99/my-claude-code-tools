@@ -44,8 +44,18 @@ is_safe_path() {
   esac
 }
 
-# ── Load config and sync ──
+# ── Load config (create default if missing) ──
 CONFIG_FILE="$REPO_PATH/.worktree-sync.json"
+if [ ! -f "$CONFIG_FILE" ]; then
+  cat > "$CONFIG_FILE" <<'DEFAULTCFG'
+{
+  "copyFiles": [".env", ".env.local"],
+  "symlinkDirs": ["node_modules", ".next/cache"]
+}
+DEFAULTCFG
+  log "  Created default config: .worktree-sync.json"
+fi
+
 if [ -f "$CONFIG_FILE" ]; then
   # Copy files
   jq -r '.copyFiles[]? // empty' "$CONFIG_FILE" 2>/dev/null | while IFS= read -r file; do

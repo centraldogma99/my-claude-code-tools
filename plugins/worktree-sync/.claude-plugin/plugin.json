@@ -1,7 +1,7 @@
 {
   "name": "worktree-sync",
   "description": "Git worktree 진입 시 .env.local, node_modules 등을 원본에서 자동 symlink/복사",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "최준영"
   }
