@@ -57,6 +57,16 @@
         "name": "최준영"
       },
       "tags": ["commands", "figma", "verify", "browser", "markup"]
+    },
+    {
+      "name": "session-summary",
+      "source": "./plugins/session-summary",
+      "description": "특정 기간의 Claude Code 세션 내용을 모든 프로젝트에서 수집하여 정리/요약하는 플러그인",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["commands", "session", "summary", "history"]
     }
   ]
 }

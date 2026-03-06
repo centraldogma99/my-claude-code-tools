@@ -20,6 +20,14 @@ Git worktree 진입 시 `.env.local`, `node_modules` 등을 원본에서 자동 
 /plugin install worktree-sync@my-claude-code-tools
 ```
 
+### session-summary
+
+특정 기간의 Claude Code 세션 내용을 모든 프로젝트에서 수집하여 정리/요약
+
+```
+/plugin install session-summary@my-claude-code-tools
+```
+
 ## 설치
 
 ```bash
