@@ -12,6 +12,18 @@
         ]
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/iterm-tab-color.sh yellow",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "PreCompact": [
       {
         "matcher": "",
@@ -43,7 +55,7 @@
     ],
     "Notification": [
       {
-        "matcher": "",
+        "matcher": "permission_prompt|elicitation_dialog|idle_prompt",
         "hooks": [
           {
             "type": "command",
@@ -52,7 +64,7 @@
           },
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/iterm-tab-color.sh green",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/iterm-tab-color.sh red",
             "timeout": 5
           }
         ]
