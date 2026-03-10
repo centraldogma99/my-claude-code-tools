@@ -8,9 +8,6 @@
 
 trap 'exit 0' ERR
 
-# ── Skip if spawned by mistake-tracker ──
-[ "${_MISTAKE_TRACKER_ACTIVE:-}" = "1" ] && exit 0
-
 # Always notify over SSH
 if [ -n "${SSH_TTY:-}" ]; then
 	IS_SSH=1
