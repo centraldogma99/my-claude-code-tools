@@ -1,7 +1,7 @@
 {
   "name": "spec-interview",
   "description": "심층 인터뷰를 통한 기능 사양서(spec) 작성",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "최준영"
   }

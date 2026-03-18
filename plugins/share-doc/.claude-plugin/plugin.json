@@ -1,0 +1,5 @@
+{
+  "name": "share-doc",
+  "description": "HTML 파일을 share-doc 레포지토리에 업로드하여 GitHub Pages로 공유",
+  "version": "1.0.0"
+}
