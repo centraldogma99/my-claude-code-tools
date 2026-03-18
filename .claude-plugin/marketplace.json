@@ -57,6 +57,16 @@
         "name": "최준영"
       },
       "tags": ["commands", "session", "summary", "history"]
+    },
+    {
+      "name": "share-doc",
+      "source": "./plugins/share-doc",
+      "description": "HTML 파일을 share-doc 레포지토리에 업로드하여 GitHub Pages로 공유",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["commands", "share", "github-pages", "html"]
     }
   ]
 }
