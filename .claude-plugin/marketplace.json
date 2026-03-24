@@ -49,8 +49,8 @@
       "tags": ["commands", "figma", "verify", "browser", "markup"]
     },
     {
-      "name": "session-summary",
-      "source": "./plugins/session-summary",
+      "name": "session-history",
+      "source": "./plugins/session-history",
       "description": "특정 기간의 Claude Code 세션 내용을 모든 프로젝트에서 수집하여 정리/요약하는 플러그인",
       "version": "1.0.0",
       "author": {

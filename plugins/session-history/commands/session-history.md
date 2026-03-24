@@ -1,9 +1,10 @@
 ---
 description: "특정 기간의 Claude Code 세션 내용을 모든 프로젝트에서 수집하여 정리/요약한다. '어제 세션 정리해줘', '이번 주 작업 요약', '3월 5일에 뭐 했지?' 등"
+parameter_hint: "조회할 날짜(ex- '어제', '3월 25일', '2025-03-25' 등)"
 allowed-tools: Read, Bash, Glob, Grep
 ---
 
-# Session Summary
+# Session History
 
 특정 기간의 Claude Code 세션들을 **모든 프로젝트 디렉토리**에서 수집하여 요약한다.
 

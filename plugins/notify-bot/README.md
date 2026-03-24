@@ -31,10 +31,3 @@ Claude Code가 사용자 입력을 기다릴 때 macOS 알림과 스타크래프
 | 컴팩트 | 파란색 | `PreCompact` |
 | 완료 | 초록색 | `Stop`, `Notification` |
 | 세션 종료 | 리셋 | `SessionEnd` |
-
-
-## 설치
-
-```
-/plugin install notify-bot@my-claude-code-tools
-```
