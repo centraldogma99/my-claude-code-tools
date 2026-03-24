@@ -67,6 +67,16 @@
         "name": "최준영"
       },
       "tags": ["commands", "share", "github-pages", "html"]
+    },
+    {
+      "name": "debug",
+      "source": "./plugins/debug",
+      "description": "이슈의 근본 원인을 추적하여 디버깅하는 워크플로우 플러그인 (인과 관계 체인 → 소스 수준 수정)",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["commands", "debug", "trace", "root-cause"]
     }
   ]
 }
