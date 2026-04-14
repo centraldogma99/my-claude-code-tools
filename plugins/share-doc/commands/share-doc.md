@@ -32,6 +32,9 @@ HTML 또는 Markdown 파일을 share-doc 레포지토리에 업로드하여 GitH
 4. 업로드 성공 시 GitHub Pages URL을 안내하고 종료한다:
    `https://pages.github.jobis.co/jobisnvillains/share-doc/{파일명}`
    - 하위 디렉토리에 배치한 경우: `https://pages.github.jobis.co/jobisnvillains/share-doc/{경로}/{파일명}`
+   - **Markdown 파일(`.md`)인 경우**: GitHub Pages는 `.md` 확장자 없이 접근해야 하므로, URL 안내 시 파일명에서 `.md`를 제거한다.
+     - 예: `spec.md` 업로드 → `https://pages.github.jobis.co/jobisnvillains/share-doc/spec`
+     - 예: `docs/guide.md` 업로드 → `https://pages.github.jobis.co/jobisnvillains/share-doc/docs/guide`
 5. 업로드 실패 시 (인증 오류, 네트워크 문제 등):
    - 무엇이 잘못되었는지 명확히 설명한다.
    - 가능한 대안을 제시한다 (gh auth 확인, 재시도 등).
