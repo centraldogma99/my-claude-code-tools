@@ -69,6 +69,16 @@
       "tags": ["commands", "share", "github-pages", "html"]
     },
     {
+      "name": "share-doc-public",
+      "source": "./plugins/share-doc-public",
+      "description": "HTML/Markdown 파일을 GitHub Pages로 공유 (공개용)",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["commands", "share", "github-pages", "public"]
+    },
+    {
       "name": "debug",
       "source": "./plugins/debug",
       "description": "이슈의 근본 원인을 추적하여 디버깅하는 워크플로우 플러그인 (인과 관계 체인 → 소스 수준 수정)",
