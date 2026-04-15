@@ -87,6 +87,16 @@
         "name": "최준영"
       },
       "tags": ["commands", "debug", "trace", "root-cause"]
+    },
+    {
+      "name": "problem-definition-writer",
+      "source": "./plugins/problem-definition-writer",
+      "description": "문제 정의서(Why/What) 작성, 검토, 정합성 검증",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["skills", "problem-definition", "planning", "review"]
     }
   ]
 }

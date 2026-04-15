@@ -28,6 +28,14 @@ Git worktree 진입 시 `.env.local`, `node_modules` 등을 원본에서 자동 
 /plugin install session-history@junyeong-claude-code-plugins
 ```
 
+### problem-definition-writer
+
+문제 정의서(Why/What) 작성, 검토, 정합성 검증
+
+```
+/plugin install problem-definition-writer@junyeong-claude-code-plugins
+```
+
 ## 설치
 
 ```bash
