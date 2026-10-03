@@ -44,6 +44,14 @@ Armored Core VI 스타일 테마 + HUD mod (AP 게이지, 전투 스피너, `/co
 /plugin install ac6-hud@junyeong-claude-code-plugins
 ```
 
+### home-path-complete
+
+프롬프트에 입력한 `~/` 경로를 ctrl+f 한 번으로 자동완성 (키 바인딩 설정 필요, [README](plugins/home-path-complete/README.md))
+
+```
+/plugin install home-path-complete@junyeong-claude-code-plugins
+```
+
 ### you-should-know
 
 내장 "You should know" mod를 한국어로 답하게 패치한 복제본 (로컬 빌드 필요, [README](plugins/you-should-know/README.md))
