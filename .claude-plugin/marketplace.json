@@ -97,6 +97,16 @@
         "name": "최준영"
       },
       "tags": ["skills", "problem-definition", "planning", "review"]
+    },
+    {
+      "name": "ac6-hud",
+      "source": "./plugins/ac6-hud",
+      "description": "Armored Core VI 스타일 테마 + HUD mod (AP 게이지, 전투 스피너, /cockpit 패널)",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["mod", "theme", "hud"]
     }
   ]
 }
