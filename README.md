@@ -36,6 +36,14 @@ Git worktree 진입 시 `.env.local`, `node_modules` 등을 원본에서 자동 
 /plugin install problem-definition-writer@junyeong-claude-code-plugins
 ```
 
+### ac6-hud
+
+Armored Core VI 스타일 테마 + HUD mod (AP 게이지, 전투 스피너, `/cockpit` 패널)
+
+```
+/plugin install ac6-hud@junyeong-claude-code-plugins
+```
+
 ## 설치
 
 ```bash

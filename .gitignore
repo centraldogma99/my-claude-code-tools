@@ -1,1 +1,4 @@
 .DS_Store
+# Laid by Claude Code when it loads a mod from a plugin folder
+plugins/*/.claude-plugin/types/
+plugins/*/tsconfig.json

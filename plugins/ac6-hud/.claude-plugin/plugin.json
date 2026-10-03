@@ -1,0 +1,9 @@
+{
+  "name": "ac6-hud",
+  "version": "1.0.0",
+  "description": "Armored Core VI style HUD for Claude Code: AP gauge, combat-mode spinner, mission-complete line",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "최준영"
+  }
+}
