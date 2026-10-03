@@ -36,6 +36,14 @@ Git worktree 진입 시 `.env.local`, `node_modules` 등을 원본에서 자동 
 /plugin install problem-definition-writer@junyeong-claude-code-plugins
 ```
 
+### home-path-complete
+
+프롬프트에 입력한 `~/` 경로를 ctrl+f 한 번으로 자동완성 (키 바인딩 설정 필요, [README](plugins/home-path-complete/README.md))
+
+```
+/plugin install home-path-complete@junyeong-claude-code-plugins
+```
+
 ## 설치
 
 ```bash

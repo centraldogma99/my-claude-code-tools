@@ -1,0 +1,6 @@
+{
+  "name": "home-path-complete",
+  "description": "프롬프트에 입력한 ~/ 경로를 ctrl+f 한 번으로 자동완성",
+  "version": "1.0.0",
+  "types": "./types/index.d.ts"
+}

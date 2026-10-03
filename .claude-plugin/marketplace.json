@@ -97,6 +97,16 @@
         "name": "최준영"
       },
       "tags": ["skills", "problem-definition", "planning", "review"]
+    },
+    {
+      "name": "home-path-complete",
+      "source": "./plugins/home-path-complete",
+      "description": "프롬프트에 입력한 ~/ 경로를 ctrl+f 한 번으로 자동완성",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["mod", "prompt", "autocomplete", "path"]
     }
   ]
 }
