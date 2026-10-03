@@ -75,7 +75,7 @@ export const register: Register = on => {
   let arms = 0
 
   on('session.start', async ($, e, next) => {
-    await $.command.register({ name: 'cockpit', description: 'Toggle the AC cockpit panel: AP log and armament' })
+    await $.command.register({ name: 'cockpit', description: 'Toggle the AC cockpit panel: AP log and armament', immediate: true })
     $.ui.toast('MAIN SYSTEM ── ACTIVATING COMBAT MODE')
     return next(e)
   })
