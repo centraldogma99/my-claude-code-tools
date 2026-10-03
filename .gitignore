@@ -2,3 +2,5 @@
 # Laid by Claude Code when it loads a mod from a plugin folder
 plugins/*/.claude-plugin/types/
 plugins/*/tsconfig.json
+# Anthropic 코드 파생물: 각자 build.py로 로컬 생성
+plugins/you-should-know/hooks/register.ts
