@@ -11,25 +11,26 @@ Claude Code 내장 mod `cc-plugin-you-should-know`를 복제해, 사이드 에�
 - 내장 등록 코드와 사용 가능 여부 검사(1st-party, telemetry 켜짐 등)를 뺐습니다.
 - `$.store`가 원본과 분리되어 있어 원본에 쌓인 `seen` / `known` 기록은 넘어오지 않습니다.
 
-## 빌드
+## 설치
 
-mod 코드는 Anthropic 저작물이라 이 레포에 포함하지 않습니다. 설치된 Claude Code 바이너리에서 직접 꺼내 패치합니다 (`python3`, `npx` 필요).
+```
+/plugin install you-should-know@junyeong-claude-code-plugins
+```
+
+내장 mod는 꺼 주세요. 둘 다 켜져 있으면 카드가 두 번 뜹니다.
+
+```
+/plugin disable cc-plugin-you-should-know@builtin
+```
+
+## 다시 빌드하기
+
+`hooks/register.ts`는 Claude Code 2.1.288 바이너리에서 꺼낸 내장 mod 소스(© Anthropic PBC)에 위 패치를 적용한 결과물입니다. Claude Code를 업데이트한 뒤 원본 변경을 반영하려면 다시 빌드합니다 (`python3`, `npx` 필요).
 
 ```bash
-python3 plugins/you-should-know/build.py   # → hooks/register.ts 생성
+python3 plugins/you-should-know/build.py
 claude plugin validate plugins/you-should-know
 claude plugin test plugins/you-should-know
 ```
 
-원본의 minify된 식별자에 기대는 패치라, Claude Code 버전이 바뀌면 assert가 실패할 수 있습니다. 확인된 버전은 2.1.288입니다.
-
-## 사용
-
-1. 내장 mod 끄기: `/plugin disable cc-plugin-you-should-know@builtin` (둘 다 켜면 카드가 두 번 뜹니다)
-2. `~/.claude/settings.json`의 `env`에 빌드한 폴더를 지정하고 Claude Code를 다시 시작합니다.
-
-```json
-{ "env": { "CLAUDE_CODE_PLUGIN_DIRS": "/absolute/path/to/plugins/you-should-know" } }
-```
-
-빌드 산출물이 필요해서 마켓플레이스(`/plugin install`)로는 배포하지 않습니다.
+패치가 원본의 minify된 식별자에 기대기 때문에, 버전에 따라 assert가 실패할 수 있습니다.

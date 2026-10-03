@@ -54,7 +54,11 @@ Armored Core VI 스타일 테마 + HUD mod (AP 게이지, 전투 스피너, `/co
 
 ### you-should-know
 
-내장 "You should know" mod를 한국어로 답하게 패치한 복제본 (로컬 빌드 필요, [README](plugins/you-should-know/README.md))
+내장 "You should know" mod를 한국어로 답하게 패치한 복제본 ([README](plugins/you-should-know/README.md))
+
+```
+/plugin install you-should-know@junyeong-claude-code-plugins
+```
 
 ## 설치
 

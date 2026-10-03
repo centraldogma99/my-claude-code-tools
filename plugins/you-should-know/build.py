@@ -1,7 +1,7 @@
 """설치된 Claude Code 바이너리에서 내장 you-should-know mod를 꺼내 한국어 응답으로 패치한다.
 
 usage: python3 build.py [claude 바이너리 경로]
-출력: hooks/register.ts (Anthropic 코드 파생물이라 커밋하지 않는다)
+출력: hooks/register.ts (Claude Code를 업데이트한 뒤 다시 돌려 갱신한다)
 """
 import re, sys, shutil, pathlib, subprocess, tempfile
 
@@ -80,7 +80,7 @@ src = src.replace("Output only the explanation.`",
                   "Output only the explanation." + LANG.replace("`", "") + "`")
 
 helpers = f'''// Derived from Claude Code {version} built-in mod cc-plugin-you-should-know
-// (c) Anthropic PBC. Local personal patch only: do not redistribute.
+// Original (c) Anthropic PBC. All rights reserved. Patched to answer in Korean.
 // @ts-nocheck
 const Tae = "{NAME}";
 const k0n = "";
