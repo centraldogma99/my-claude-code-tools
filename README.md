@@ -52,6 +52,14 @@ Armored Core VI 스타일 테마 + HUD mod (AP 게이지, 전투 스피너, `/co
 /plugin install home-path-complete@junyeong-claude-code-plugins
 ```
 
+### recall
+
+`/recall <질문>`으로 과거 세션의 관련 구간을 요약 카드로 찾아 현재 세션에 주입하는 mod ([README](plugins/recall/README.md))
+
+```
+/plugin install recall@junyeong-claude-code-plugins
+```
+
 ## 설치
 
 ```bash

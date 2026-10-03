@@ -1,0 +1,9 @@
+{
+  "name": "recall",
+  "version": "1.0.0",
+  "description": "/recall <질문>으로 과거 세션의 관련 구간을 요약 카드로 찾아 현재 세션에 주입",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "최준영"
+  }
+}
