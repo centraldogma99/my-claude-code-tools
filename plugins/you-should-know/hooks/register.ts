@@ -1159,13 +1159,12 @@ function Br(e, t) {
   let o = t.off,
     n =
       o !== void 0
-        ? [{ hotkey: "4", label: "제안 끄기", onPress: o }]
+        ? [{ hotkey: "3", label: "제안 끄기", onPress: o }]
         : [];
   return Pe(e, [
     { hotkey: "1", label: "도움이 됐어요", onPress: t.helpful },
-    { hotkey: "2", label: "관련 없어요", onPress: t.notRelevant },
     {
-      hotkey: "3",
+      hotkey: "2",
       label: "이해하지 못했어요",
       onPress: t.notUnderstood,
     },
@@ -2801,12 +2800,15 @@ function os(e) {
           return X !== void 0
             ? Fr(O, {
                 helpful: W("explained_helpful", Be),
-                notUnderstood: W("explained_not_understood"),
+                notUnderstood: W("explained_not_understood", () =>
+                  p.text === void 0
+                    ? ge(p.line, void 0, 1)
+                    : ge(p.line, { direction: "simpler_words", previous: p.text }, X + 1),
+                ),
               })
             : Br(O, {
                 helpful: W("helpful", Be),
-                notRelevant: W("not_relevant"),
-                notUnderstood: W("not_understood"),
+                notUnderstood: W("not_understood", () => ge(p.line, void 0, 1)),
                 off: he[f.surface]
                   ? void 0
                   : M(() =>
@@ -2881,7 +2883,7 @@ function os(e) {
                   respond: () => {
                     if (!y) ((y = !0), X());
                   },
-                  dismiss: I("dismiss", () => ht({ line: m, iteration: b })),
+                  dismiss: I("dismiss", () => ht({ line: m, iteration: b, text: p.text })),
                 },
             L,
           );
