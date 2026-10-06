@@ -79,11 +79,62 @@ assert before == 1, before
 src = src.replace("Output only the explanation.`",
                   "Output only the explanation." + LANG.replace("`", "") + "`")
 
+# 화면 문구 한글화: (원문 조각, 바꿀 조각, 원문 등장 횟수). 원문의 ’ 등은 소스에 escape 그대로 있다.
+UI = [
+    ('label: e.isOpen ? "Return to topic" : "What is this"', 'label: e.isOpen ? "주제로 돌아가기" : "이게 뭔가요"', 1),
+    ('{ text: "Learn more", look: "bold" }', '{ text: "자세히 보기", look: "bold" }', 1),
+    ('" to get a deeper explanation and chat about it."', '"를 누르면 더 깊은 설명을 보고 이어서 물어볼 수 있어요."', 1),
+    ('"Disable on this machine with "', '"이 컴퓨터에서 끄려면 "', 1),
+    ('{ text: "." },', '{ text: "을 실행하세요." },', 1),
+    ('"A side agent is watching your back while Claude works."', '"Claude가 일하는 동안 사이드 에이전트가 함께 지켜보고 있어요."', 1),
+    ('"When something comes up that you should know but might miss, this plugin flags it for you."',
+     '"알아야 하는데 놓치기 쉬운 일이 생기면 이 플러그인이 알려 드려요."', 1),
+    ('"Dismissed."', '"닫았어요."', 2),
+    ('label: "Turn off suggestions"', 'label: "제안 끄기"', 1),
+    ('label: "That was helpful"', 'label: "도움이 됐어요"', 2),
+    ('label: "Not relevant"', 'label: "관련 없어요"', 1),
+    ('label: "Couldn\\u2019t understand"', 'label: "이해하지 못했어요"', 1),
+    ('label: "Didn\\u2019t understand"', 'label: "이해가 안 돼요"', 1),
+    ('label: "Understood"', 'label: "이해했어요"', 1),
+    ('label: "Chat in main session"', 'label: "메인 세션에서 이어 묻기"', 1),
+    ('label: "Dismiss"', 'label: "닫기"', 2),
+    ('label: "OK"', 'label: "확인"', 1),
+    ('"One moment\\u2026"', '"잠시만요\\u2026"', 1),
+    ('"Couldn\\u2019t publish that page"', '"페이지를 게시하지 못했어요"', 1),
+    ('"Not published (blocked by a permission setting)"', '"게시하지 않았어요 (권한 설정에서 막힘)"', 1),
+    ('"Couldn\\u2019t write that explanation"', '"설명을 쓰지 못했어요"', 1),
+    ('"Couldn\\u2019t turn suggestions off here. Use /plugin."', '"여기서는 제안을 끌 수 없어요. /plugin을 쓰세요."', 1),
+    ('"Couldn\\u2019t write that page"', '"페이지를 쓰지 못했어요"', 1),
+    ('"Making your page (a minute or two) \\xB7 Claude keeps working\\u2026"',
+     '"페이지를 만드는 중이에요 (1~2분) \\xB7 Claude는 하던 작업을 계속해요\\u2026"', 1),
+    ('label: t ? "Press again to disable" : "Disable"', 'label: t ? "한 번 더 누르면 꺼져요" : "끄기"', 1),
+    ('label: "Learn more"', 'label: "자세히 보기"', 1),
+    ('label: "Knew this already"', 'label: "이미 알아요"', 1),
+    ('"Learning page ready"', '"학습 페이지가 준비됐어요"', 1),
+    ('label: "Helpful"', 'label: "도움 됐어요"', 1),
+    ('label: "Not helpful"', 'label: "도움 안 됐어요"', 1),
+    ('label: "Didn\\u2019t read"', 'label: "안 읽었어요"', 1),
+    ('"Your prompt box has text in it. Send or clear it, then press again to turn suggestions off."',
+     '"프롬프트 입력창에 글이 있어요. 보내거나 지운 뒤 다시 누르면 제안이 꺼져요."', 1),
+    ('"A dialog has the keyboard. Answer it, then press 2 again."', '"대화상자가 키 입력을 받고 있어요. 먼저 답한 뒤 2를 다시 누르세요."', 1),
+    ('"Your prompt box has text in it. Send or clear it, then press 2 again."',
+     '"프롬프트 입력창에 글이 있어요. 보내거나 지운 뒤 2를 다시 누르세요."', 1),
+    ('"The prompt box didn\'t take the note. Press 2 to try again."', '"입력창에 메모를 넣지 못했어요. 2를 눌러 다시 시도하세요."', 1),
+    # 태그는 저장값·파서에서 영어로 쓰이므로 화면에 그릴 때만 바꾼다
+    ('h(o, { ...r.tag }, " ", t, " \\xB7 ")', 'h(o, { ...r.tag }, " ", koTag(t), " \\xB7 ")', 1),
+    ('h(r, { ...n.tag }, t, " \\xB7 ")', 'h(r, { ...n.tag }, koTag(t), " \\xB7 ")', 1),
+    ('var Yo = (e) => `${e} \\xB7 `;', 'var Yo = (e) => `${koTag(e)} \\xB7 `;', 1),
+]
+for old, new, count in UI:
+    assert src.count(old) == count, (old, src.count(old))
+    src = src.replace(old, new)
+
 helpers = f'''// Derived from Claude Code {version} built-in mod cc-plugin-you-should-know
 // Original (c) Anthropic PBC. All rights reserved. Patched to answer in Korean.
 // @ts-nocheck
 const Tae = "{NAME}";
 const k0n = "";
+const koTag = (t) => ({{ "You should know": "알아 두세요", "Heads up": "주의" }})[t] ?? t;
 const po = (target, all) => {{
   for (const name in all) Object.defineProperty(target, name, {{ get: all[name], enumerable: true }});
 }};
