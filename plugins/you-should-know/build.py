@@ -129,6 +129,31 @@ for old, new, count in UI:
     assert src.count(old) == count, (old, src.count(old))
     src = src.replace(old, new)
 
+# (원문 조각, 바꿀 조각, 원문 등장 횟수) — UI 한글화 뒤 소스에 적용
+FLOW = [
+    # '관련 없어요' 선택지 제거, '제안 끄기'를 3번으로 당김
+    ('        ? [{ hotkey: "4", label: "제안 끄기", onPress: o }]',
+     '        ? [{ hotkey: "3", label: "제안 끄기", onPress: o }]', 1),
+    ('    { hotkey: "2", label: "관련 없어요", onPress: t.notRelevant },\n    {\n      hotkey: "3",\n      label: "이해하지 못했어요",',
+     '    {\n      hotkey: "2",\n      label: "이해하지 못했어요",', 1),
+    ('                notRelevant: W("not_relevant"),\n', '', 1),
+    # 설명을 닫을 때 본문을 asked 상태에 넘겨, '이해 안 돼요'가 더 쉬운 말로 다시 쓰게 한다
+    ('dismiss: I("dismiss", () => ht({ line: m, iteration: b })),',
+     'dismiss: I("dismiss", () => ht({ line: m, iteration: b, text: p.text })),', 1),
+    ('notUnderstood: W("explained_not_understood"),',
+     'notUnderstood: W("explained_not_understood", () =>\n'
+     '                  p.text === void 0\n'
+     '                    ? ge(p.line, void 0, 1)\n'
+     '                    : ge(p.line, { direction: "simpler_words", previous: p.text }, X + 1),\n'
+     '                ),', 1),
+    # 한 줄 제안만 보고 이해 못 했으면 설명을 바로 띄운다
+    ('notUnderstood: W("not_understood"),',
+     'notUnderstood: W("not_understood", () => ge(p.line, void 0, 1)),', 1),
+]
+for old, new, count in FLOW:
+    assert src.count(old) == count, (old, src.count(old))
+    src = src.replace(old, new)
+
 helpers = f'''// Derived from Claude Code {version} built-in mod cc-plugin-you-should-know
 // Original (c) Anthropic PBC. All rights reserved. Patched to answer in Korean.
 // @ts-nocheck
