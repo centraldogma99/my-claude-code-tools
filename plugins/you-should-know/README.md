@@ -7,6 +7,7 @@ Claude Code 내장 mod `cc-plugin-you-should-know`를 복제해, 사이드 에�
 ## 원본과 다른 점
 
 - 제안·설명 프롬프트 끝에 `## Language` 섹션을 붙여 한국어로 답하게 합니다. 파서가 읽는 `learn:` / `tag:` / `explain:` 라벨과 태그 값은 영어로 유지합니다.
+- 카드 머리의 태그(`Heads up` → `주의`, `You should know` → `알아 두세요`)와 선택지·안내·오류 문구를 한글로 바꿨습니다. 태그 저장값과 파서는 영어 그대로입니다.
 - telemetry 전송을 막았습니다.
 - 내장 등록 코드와 사용 가능 여부 검사(1st-party, telemetry 켜짐 등)를 뺐습니다.
 - `$.store`가 원본과 분리되어 있어 원본에 쌓인 `seen` / `known` 기록은 넘어오지 않습니다.

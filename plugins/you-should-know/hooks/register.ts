@@ -3,6 +3,7 @@
 // @ts-nocheck
 const Tae = "you-should-know";
 const k0n = "";
+const koTag = (t) => ({ "You should know": "알아 두세요", "Heads up": "주의" })[t] ?? t;
 const po = (target, all) => {
   for (const name in all) Object.defineProperty(target, name, { get: all[name], enumerable: true });
 };
@@ -505,25 +506,25 @@ function yt(e, t) {
 }
 var je = (e) => ({
   hotkey: "3",
-  label: e.isOpen ? "Return to topic" : "What is this",
+  label: e.isOpen ? "주제로 돌아가기" : "이게 뭔가요",
   onPress: e.onPress,
   isDim: !0,
 });
 var ye = (e) => e.map((t) => t.map((o) => o.text).join("")).join(" ");
 var wt = [
-  { text: "Learn more", look: "bold" },
-  { text: " to get a deeper explanation and chat about it." },
+  { text: "자세히 보기", look: "bold" },
+  { text: "를 누르면 더 깊은 설명을 보고 이어서 물어볼 수 있어요." },
 ];
 var ne = `/plugin disable ${Tae}`;
 var No = [
-  { text: "Disable on this machine with " },
+  { text: "이 컴퓨터에서 끄려면 " },
   { text: ne, look: "code" },
-  { text: "." },
+  { text: "을 실행하세요." },
 ];
-var kt = [{ text: "A side agent is watching your back while Claude works." }];
+var kt = [{ text: "Claude가 일하는 동안 사이드 에이전트가 함께 지켜보고 있어요." }];
 var Tt = [
   {
-    text: "When something comes up that you should know but might miss, this plugin flags it for you.",
+    text: "알아야 하는데 놓치기 쉬운 일이 생기면 이 플러그인이 알려 드려요.",
   },
 ];
 var Bo = [kt, Tt, wt];
@@ -586,7 +587,7 @@ function Ko({ columns: e, labels: t }) {
 }
 var Go = 1;
 var vt = 2;
-var Yo = (e) => `${e} \xB7 `;
+var Yo = (e) => `${koTag(e)} \xB7 `;
 var we = (e, t) =>
   Go + St(e, t.columns - vt) + Ko({ ...t, columns: t.columns - 2 });
 var Vo = (e) => we(Yo(e.tag) + e.line, e);
@@ -1088,7 +1089,7 @@ function U(e, t) {
     o,
     null,
     h(o, { ...r.star }, "\u2726"),
-    t === void 0 ? " " : h(o, { ...r.tag }, " ", t, " \xB7 "),
+    t === void 0 ? " " : h(o, { ...r.tag }, " ", koTag(t), " \xB7 "),
   );
 }
 function Ae(e, t) {
@@ -1110,7 +1111,7 @@ function Re(e, t, o) {
         h(
           r,
           { wrap: "wrap" },
-          t === void 0 ? "" : h(r, { ...n.tag }, t, " \xB7 "),
+          t === void 0 ? "" : h(r, { ...n.tag }, koTag(t), " \xB7 "),
           o,
         ),
       )
@@ -1132,7 +1133,7 @@ function Pe(e, t) {
             h(
               o,
               { marginRight: se },
-              h(r, { dimColor: !0, wrap: "truncate-end" }, "Dismissed."),
+              h(r, { dimColor: !0, wrap: "truncate-end" }, "닫았어요."),
             ),
             i,
           ),
@@ -1148,7 +1149,7 @@ function Pe(e, t) {
             r,
             { wrap: "truncate-end" },
             U(e),
-            h(r, { dimColor: !0 }, "Dismissed."),
+            h(r, { dimColor: !0 }, "닫았어요."),
           ),
         ),
         i,
@@ -1158,14 +1159,14 @@ function Br(e, t) {
   let o = t.off,
     n =
       o !== void 0
-        ? [{ hotkey: "4", label: "Turn off suggestions", onPress: o }]
+        ? [{ hotkey: "4", label: "제안 끄기", onPress: o }]
         : [];
   return Pe(e, [
-    { hotkey: "1", label: "That was helpful", onPress: t.helpful },
-    { hotkey: "2", label: "Not relevant", onPress: t.notRelevant },
+    { hotkey: "1", label: "도움이 됐어요", onPress: t.helpful },
+    { hotkey: "2", label: "관련 없어요", onPress: t.notRelevant },
     {
       hotkey: "3",
-      label: "Couldn\u2019t understand",
+      label: "이해하지 못했어요",
       onPress: t.notUnderstood,
     },
     ...n,
@@ -1173,8 +1174,8 @@ function Br(e, t) {
 }
 var Fr = (e, t) =>
   Pe(e, [
-    { hotkey: "1", label: "That was helpful", onPress: t.helpful },
-    { hotkey: "2", label: "Didn\u2019t understand", onPress: t.notUnderstood },
+    { hotkey: "1", label: "도움이 됐어요", onPress: t.helpful },
+    { hotkey: "2", label: "이해가 안 돼요", onPress: t.notUnderstood },
   ]);
 function ee(e, t) {
   let { Box: o } = e;
@@ -1305,11 +1306,11 @@ function jr(e, ...[t, o, r, n = Se]) {
     r === null
       ? ""
       : ee(e, [
-          { hotkey: "1", label: "Understood", onPress: r.gotIt },
-          { hotkey: "2", label: "Chat in main session", onPress: r.respond },
+          { hotkey: "1", label: "이해했어요", onPress: r.gotIt },
+          { hotkey: "2", label: "메인 세션에서 이어 묻기", onPress: r.respond },
           {
             hotkey: "0",
-            label: "Dismiss",
+            label: "닫기",
             onPress: r.dismiss,
             role: "dismiss",
           },
@@ -1325,7 +1326,7 @@ function Ce(e, t) {
     h(r, { wrap: "truncate-end", dimColor: !0 }, " ", t),
   );
 }
-var Wr = (e) => Ce(e, "One moment\u2026");
+var Wr = (e) => Ce(e, "잠시만요\u2026");
 function Kr(e, t, o) {
   let { Box: r, Text: n } = e,
     i = t === "publish",
@@ -1340,19 +1341,19 @@ function Kr(e, t, o) {
       { wrap: "truncate-end" },
       U(e),
       i
-        ? "Couldn\u2019t publish that page"
+        ? "페이지를 게시하지 못했어요"
         : a
-          ? "Not published (blocked by a permission setting)"
+          ? "게시하지 않았어요 (권한 설정에서 막힘)"
           : d
-            ? "Couldn\u2019t write that explanation"
+            ? "설명을 쓰지 못했어요"
             : u
-              ? "Couldn\u2019t turn suggestions off here. Use /plugin."
-              : "Couldn\u2019t write that page",
+              ? "여기서는 제안을 끌 수 없어요. /plugin을 쓰세요."
+              : "페이지를 쓰지 못했어요",
       " ",
       h(n, { dimColor: !0 }, "\xB7"),
       " ",
     ),
-    Z(e, { hotkey: "0", label: "OK", onPress: o }),
+    Z(e, { hotkey: "0", label: "확인", onPress: o }),
   );
 }
 var nt = 2;
@@ -1403,14 +1404,14 @@ function Gr(e, t) {
   }));
 }
 var Yr = (e) =>
-  Ce(e, "Making your page (a minute or two) \xB7 Claude keeps working\u2026");
+  Ce(e, "페이지를 만드는 중이에요 (1~2분) \xB7 Claude는 하던 작업을 계속해요\u2026");
 var uo = (e, t) =>
   e === void 0
     ? []
     : [
         {
           hotkey: "4",
-          label: t ? "Press again to disable" : "Disable",
+          label: t ? "한 번 더 누르면 꺼져요" : "끄기",
           onPress: e,
           isDim: !0,
         },
@@ -1418,12 +1419,12 @@ var uo = (e, t) =>
 function qr(e, ...[t, o, r, n = Ho, i = Se]) {
   let { Box: a } = e,
     d = [
-      { hotkey: "1", label: "Learn more", onPress: o.explain },
-      { hotkey: "2", label: "Knew this already", onPress: o.knew },
+      { hotkey: "1", label: "자세히 보기", onPress: o.explain },
+      { hotkey: "2", label: "이미 알아요", onPress: o.knew },
     ],
     u = [
       ...uo(o.off, r),
-      { hotkey: "0", label: "Dismiss", onPress: o.later, role: "dismiss" },
+      { hotkey: "0", label: "닫기", onPress: o.later, role: "dismiss" },
     ],
     w = zo(n, { tag: i, line: t, before: d, after: u }),
     f =
@@ -1443,12 +1444,12 @@ function Vr(e, t, o) {
   return h(
     r,
     { flexDirection: "column", marginTop: 1 },
-    h(n, { wrap: "truncate-end" }, U(e), "Learning page ready"),
+    h(n, { wrap: "truncate-end" }, U(e), "학습 페이지가 준비됐어요"),
     h(r, { marginLeft: 2 }, h(n, { dimColor: !0, wrap: "wrap" }, t)),
     ee(e, [
-      { hotkey: "1", label: "Helpful", onPress: o.helpful },
-      { hotkey: "2", label: "Not helpful", onPress: o.notHelpful },
-      { hotkey: "3", label: "Didn\u2019t read", onPress: o.unread },
+      { hotkey: "1", label: "도움 됐어요", onPress: o.helpful },
+      { hotkey: "2", label: "도움 안 됐어요", onPress: o.notHelpful },
+      { hotkey: "3", label: "안 읽었어요", onPress: o.unread },
     ]),
   );
 }
@@ -2309,11 +2310,11 @@ ${r}`);
 var Jn =
   '"You should know" made this page from the conversation at the time; it is a one-off explainer, not maintained.';
 var cn =
-  "Your prompt box has text in it. Send or clear it, then press again to turn suggestions off.";
-var hn = "A dialog has the keyboard. Answer it, then press 2 again.";
+  "프롬프트 입력창에 글이 있어요. 보내거나 지운 뒤 다시 누르면 제안이 꺼져요.";
+var hn = "대화상자가 키 입력을 받고 있어요. 먼저 답한 뒤 2를 다시 누르세요.";
 var xn =
-  "Your prompt box has text in it. Send or clear it, then press 2 again.";
-var gn = "The prompt box didn't take the note. Press 2 to try again.";
+  "프롬프트 입력창에 글이 있어요. 보내거나 지운 뒤 2를 다시 누르세요.";
+var gn = "입력창에 메모를 넣지 못했어요. 2를 눌러 다시 시도하세요.";
 function zn(e) {
   let t = e.search(/<title[\s>]/i);
   if (t === -1) return null;
