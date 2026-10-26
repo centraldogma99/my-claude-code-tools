@@ -137,6 +137,16 @@
         "name": "최준영"
       },
       "tags": ["mod", "session", "recall", "context"]
+    },
+    {
+      "name": "pin",
+      "source": "./plugins/pin",
+      "description": "AI 답변을 옆 pane에 고정해 두고 보면서 대화하는 mod (/pin, 답변 위 📌 버튼)",
+      "version": "1.0.0",
+      "author": {
+        "name": "최준영"
+      },
+      "tags": ["mod", "pane", "pin"]
     }
   ]
 }

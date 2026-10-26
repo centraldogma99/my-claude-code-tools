@@ -1,0 +1,9 @@
+{
+  "name": "pin",
+  "version": "1.0.0",
+  "description": "AI 답변을 옆 pane에 고정해 두고 보면서 대화하는 mod",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "최준영"
+  }
+}

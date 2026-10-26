@@ -68,6 +68,14 @@ Armored Core VI 스타일 테마 + HUD mod (AP 게이지, 전투 스피너, `/co
 /plugin install recall@junyeong-claude-code-plugins
 ```
 
+### pin
+
+AI 답변을 옆 pane에 고정해 두고 보면서 대화하는 mod. 답변 위 `📌 pin` 버튼이나 `/pin`으로 고정 ([README](plugins/pin/README.md))
+
+```
+/plugin install pin@junyeong-claude-code-plugins
+```
+
 ## 설치
 
 ```bash
